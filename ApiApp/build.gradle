@@ -1,0 +1,47 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.1.3'
+        
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+
+    project.ext {
+        appBuildToolsVersion = "26.0.2"
+        appCompileSdkVersion = 26
+        appMinSdkVersion = 19
+        appTargetSdkVersion = 26
+
+        //lib support
+        supportLibraryVersion = "26.0.1"
+        supportContraintLayout = "1.0.2"
+
+        appRxAndroid = "2.0.1"
+        appRxJava = "2.1.0"
+
+        appRetrofit = "2.2.0"
+        appRetrofitConverterGson = "2.2.0"
+        appRetrofitRxJava = "2.2.0"
+
+        appOkHttpLogging = "3.6.0"
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

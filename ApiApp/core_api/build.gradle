@@ -1,0 +1,53 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion project.ext.appCompileSdkVersion
+
+    defaultConfig {
+        minSdkVersion project.ext.appMinSdkVersion
+        targetSdkVersion project.ext.appTargetSdkVersion
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+
+        def WS_ASPIRE_TOKEN_VALUE = "\"https://demo.androidhive.info/\""
+
+        debug {
+            buildConfigField "String", "WS_TOKEN", WS_ASPIRE_TOKEN_VALUE
+
+            minifyEnabled false
+        }
+        release {
+            buildConfigField "String", "WS_TOKEN", WS_ASPIRE_TOKEN_VALUE
+
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+//    implementation 'com.android.support:appcompat-v7:27.1.1'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    //rxJava, rxAndroid for reactive programming
+    implementation "io.reactivex.rxjava2:rxandroid:$project.ext.appRxAndroid"
+    implementation "io.reactivex.rxjava2:rxjava:$project.ext.appRxJava"
+    //retrofit 2 to get client rest api easier
+    implementation "com.squareup.retrofit2:retrofit:$project.ext.appRetrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$project.ext.appRetrofitConverterGson"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$project.ext.appRetrofitRxJava"
+    implementation "com.squareup.okhttp3:logging-interceptor:$project.ext.appOkHttpLogging"
+}
